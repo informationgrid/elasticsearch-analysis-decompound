@@ -106,3 +106,13 @@ asciidoctor {
 dependencyLicenses.enabled = false
 // no integTest yet
 integTest.enabled = false
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "https://nexus.informationgrid.eu/repository/maven-releases/") {
+                authentication(userName: "$NEXUS_USERNAME", password: "$NEXUS_PASSWORD")
+            }
+        }
+    }
+}
