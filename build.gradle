@@ -137,6 +137,7 @@ if (project.hasProperty('signing.keyId')) {
 uploadArchives {
     repositories {
         mavenDeployer {
+            pom.artifactId = 'elasticsearch-analysis-decompound'
             repository(url: "https://nexus.informationgrid.eu/repository/maven-releases/") {
                 authentication(userName: "$NEXUS_USERNAME", password: "$NEXUS_PASSWORD")
             }
