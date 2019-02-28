@@ -133,3 +133,13 @@ if (project.hasProperty('signing.keyId')) {
         sign configurations.archives
     }
 }
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "https://nexus.informationgrid.eu/repository/maven-releases/") {
+                authentication(userName: "$NEXUS_USERNAME", password: "$NEXUS_PASSWORD")
+            }
+        }
+    }
+}
