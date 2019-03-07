@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh './gradlew clean assemble'
+                sh './gradlew clean assemble fixVersion'
             }
         }
         stage('Deploy') {
