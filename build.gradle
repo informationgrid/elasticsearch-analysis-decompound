@@ -50,6 +50,7 @@ configurations {
 }
 
 dependencies {
+    compile "org.elasticsearch:elasticsearch:${project.property('elasticsearch.version')}"
     testCompile "org.apache.logging.log4j:log4j-core:${project.property('log4j.version')}"
     testCompile "org.xbib.elasticsearch:elasticsearch-analysis-common:${project.property('xbib-elasticsearch-test.version')}"
     testCompile "org.elasticsearch.plugin:transport-netty4-client:${project.property('elasticsearch.version')}"
@@ -106,6 +107,20 @@ asciidoctor {
 dependencyLicenses.enabled = false
 // no integTest yet
 integTest.enabled = false
+
+task fixVersion << {
+    ant.replaceregexp(match:'elasticsearch.version=6.3.2', replace:'elasticsearch.version=6.4.2', flags:'g', byline:true) {
+        fileset(dir: 'build/generated-resources', includes: 'plugin-descriptor.properties')
+    }
+    ant.zip(destfile: "build/distributions/elasticsearch-analysis-decompound-6.4.2.0.zip") {
+        fileset(dir: "build/generated-resources")
+        fileset(dir: "build/distributions") {
+            include(name: "elasticsearch-analysis-decompound-6.4.2.0.jar")
+        }
+    }
+}
+
+//tasks.uploadArchives.dependsOn 'myCopy'
 
 uploadArchives {
     repositories {
