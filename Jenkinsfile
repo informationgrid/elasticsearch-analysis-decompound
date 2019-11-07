@@ -7,6 +7,9 @@ pipeline {
 
     stages {
         stage('Build') {
+            tools {
+                jdk 'jdk11'
+            }
             steps {
                 sh './gradlew clean assemble fixVersion'
             }
