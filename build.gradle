@@ -120,7 +120,7 @@ task fixVersion << {
     }
 }
 
-//tasks.uploadArchives.dependsOn 'myCopy'
+tasks.uploadArchives.dependsOn 'fixVersion'
 
 uploadArchives {
     repositories {
