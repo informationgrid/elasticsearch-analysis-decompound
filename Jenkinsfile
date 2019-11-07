@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        docker { image 'openjdk:11-jdk-slim' }
+    }
 
     options {
         buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '5'))
@@ -7,9 +9,6 @@ pipeline {
 
     stages {
         stage('Build') {
-            tools {
-                jdk 'jdk11'
-            }
             steps {
                 sh './gradlew clean assemble fixVersion'
             }
