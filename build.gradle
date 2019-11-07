@@ -109,13 +109,13 @@ dependencyLicenses.enabled = false
 integTest.enabled = false
 
 task fixVersion << {
-    ant.replaceregexp(match:'elasticsearch.version=6.3.2', replace:'elasticsearch.version=6.4.2', flags:'g', byline:true) {
+    ant.replaceregexp(match:'elasticsearch.version=6.3.2', replace:'elasticsearch.version=6.8.4', flags:'g', byline:true) {
         fileset(dir: 'build/generated-resources', includes: 'plugin-descriptor.properties')
     }
-    ant.zip(destfile: "build/distributions/elasticsearch-analysis-decompound-6.4.2.0.zip") {
+    ant.zip(destfile: "build/distributions/elasticsearch-analysis-decompound-6.8.4.0.zip") {
         fileset(dir: "build/generated-resources")
         fileset(dir: "build/distributions") {
-            include(name: "elasticsearch-analysis-decompound-6.4.2.0.jar")
+            include(name: "elasticsearch-analysis-decompound-6.8.4.0.jar")
         }
     }
 }
